@@ -1,0 +1,54 @@
+<section class="sidebar">
+
+  <!-- Sidebar User panel -->
+  <div class="user-panel">
+    <div class="pull-left image">
+      <img ng-src="/{{vm.authentication.user.profileImageURL}}" class="img-circle" alt="{{vm.authentication.user.displayName}}">
+    </div>
+    <div class="pull-left info">
+      <p ng-bind="vm.authentication.user.displayName"></p>
+      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    </div>
+  </div>
+
+  <!-- Search Form -->
+  <div class="sidebar-form input-group">
+    <input type="text" name="q" class="form-control" placeholder="Search...">
+    <span class="input-group-btn">
+          <button  name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+          </button>
+              </span>
+  </div>
+
+
+  <ul class="sidebar-menu">
+
+    <!--Quy-->
+   
+      <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type"
+        ng-class="{treeview: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+
+        <a ng-switch-when="dropdown" href="#">
+            <i class="fa fa-share"></i> <span>{{::item.title}}</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+      </a>
+        <ul ng-switch-when="dropdown" class="treeview-menu">
+          <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
+            <a ui-sref="{{subitem.state}}({{subitem.params}})">
+            <i class="fa fa-circle-o"></i>{{subitem.title}}</a>
+          </li>
+        </ul>
+
+
+        <a ng-switch-default ui-sref="{{item.state}}"><i class="fa fa-random"></i>
+        <span>{{item.title}}</span>
+      </a>
+      </li>
+    
+    <!--QuyEnd-->
+
+  </ul>
+
+</section>

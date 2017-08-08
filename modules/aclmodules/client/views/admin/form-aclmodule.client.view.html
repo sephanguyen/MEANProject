@@ -1,0 +1,43 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.aclmodule._id ? 'Edit' : 'Add module'}}</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.aclmodule._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i> Delete
+    </a>
+	<a class="btn btn-primary" data-ui-sref="admin.aclmodule.list" >
+        <i class="glyphicon glyphicon-arrow-left"></i> Back
+    </a>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.aclmoduleForm" class="form-horizontal" ng-submit="vm.save(vm.form.aclmoduleForm.$valid)" novalidate>
+      <fieldset>
+		<div  class="form-group" show-errors>
+		  <label class="control-label" for="name">Module name</label>
+		  <input name="name" type="text" ng-model="vm.aclmodule.name" id="name" class="form-control" placeholder="tên module" required autofocus>
+		  <div ng-messages="vm.form.aclmoduleForm.name.$error" role="alert">
+			<p class="help-block error-text" ng-message="required">Aclmodules name is required.</p>
+		  </div>
+		</div>
+		<div data-ng-repeat="role in vm.aclmodule.roles" class="form-group">
+		  <label class="control-label" for="role">Role {{$index + 1}}</label>
+		  <input name="role" type="text" ng-model="role.name" id="roles" class="form-control" placeholder="role" required autofocus>
+		  <label class="control-label" for="policies">Policies</label>
+		  <div class="controls">
+            <input class="form-control" type="text" name="policies" ng-model="role.policies" id="role" ng-list required />
+          </div>
+		  <a class="btn btn-primary pull-right" ng-click="vm.clickRemove($index)">
+			<i class="glyphicon glyphicon-minus"></i>
+		  </a>
+		</div>
+        <div class="form-group">
+		<a class="btn btn-primary" ng-click="vm.clickAdd(true)">
+			<i class="glyphicon glyphicon-plus"></i>
+		</a>
+          <button type="submit" class="btn btn-primary">{{vm.aclmodule._id ? 'Update' : 'Add'}}</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

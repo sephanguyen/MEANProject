@@ -1,0 +1,19 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\aclmodules",
+    "\\aclmodules\\client",
+    "\\books",
+    "\\books\\client",
+    "\\books\\client\\config",
+    "\\books\\client\\controllers",
+    "\\books\\client\\services",
+    "\\books\\server",
+    "\\books\\server\\policies",
+    "\\interface",
+    "\\interface\\client",
+    "\\interface\\client\\config"
+  ],
+  "SelectedNode": "\\books\\client\\config\\book.client.menus.js",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Danh mục sách</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="book in vm.book" ui-sref="book.view({ bookId: book._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="book.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="book.user" ng-bind="book.user.displayName"></span>
+        <span ng-if="!book.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="book.title"></h4>
+      <p class="list-group-item-text" ng-bind="book.author"></p>
+    </a>
+  </div>
+</section>

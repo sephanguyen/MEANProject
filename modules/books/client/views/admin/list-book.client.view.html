@@ -1,0 +1,21 @@
+﻿<section>
+  <div class="page-header">
+    <h1> Quản lý sách </h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="book in vm.book" data-ui-sref="admin.book.edit({bookId: book._id})" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="book.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="book.user" ng-bind="book.user.displayName"></span>
+        <span ng-if="!book.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="book.title"></h4>
+      <p class="list-group-item-text" data-ng-bind="book.author"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="book.$resolved && !book.length">
+    No book yet, why don't you <a data-ui-sref="admin.book.create">create one</a>?
+  </div>  
+</section>

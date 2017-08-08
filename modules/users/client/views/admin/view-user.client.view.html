@@ -1,0 +1,54 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 ng-bind="vm.user.username"></h1>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="admin.users.edit({userId: vm.user._id})">
+          <i class="glyphicon glyphicon-edit"></i> Chỉnh sửa
+        </a>
+        <a class="btn btn-primary" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf()">
+          <i class="glyphicon glyphicon-trash"></i> Xóa
+        </a>
+		<a class="btn btn-primary" data-ui-sref="admin.book.list" >
+        <i class="glyphicon glyphicon-arrow-left"></i> Trở về
+		</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-3"><strong>Tên</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.firstName"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Họ</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.lastName"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Email</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.email"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Nhà cung cấp</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.provider"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Ngày tạo</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.created"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Quyền</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.roles"></div>
+      </div>
+    </div>
+  </div>
+</section>

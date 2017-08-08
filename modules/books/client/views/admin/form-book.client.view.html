@@ -1,0 +1,33 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.book._id ? 'Chỉnh sửa' : 'Thêm sách'}}</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.book._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i> Xóa
+    </a>
+	<a class="btn btn-primary" data-ui-sref="admin.book.list" >
+        <i class="glyphicon glyphicon-arrow-left"></i> Trở về
+    </a>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.bookForm" class="form-horizontal" ng-submit="vm.save(vm.form.bookForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Tên Sách</label>
+          <input name="title" type="text" ng-model="vm.book.title" id="title" class="form-control" placeholder="tên sách" required autofocus>
+          <div ng-messages="vm.form.bookForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Book title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="author">Tác Giả</label>
+          <textarea name="author" data-ng-model="vm.book.author" id="author" class="form-control" cols="30" rows="10" placeholder="tác giả"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.book._id ? 'Cập nhật' : 'Thêm'}}</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

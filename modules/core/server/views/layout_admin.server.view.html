@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-strict-di>
+
+<head>
+  <title page-title></title>
+
+  <!-- META -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <!-- CSS Files -->
+  {{#each cssFiles}}
+  <link rel="stylesheet" href="/{{this}}">{{/each}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+  <!-- Fav Icon -->
+  <link href="/{{favicon}}" rel="shortcut icon" type="image/x-icon">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+  <div class="wrapper">
+
+    <header ng-include="'/modules/core/client/views/header_root.client.view.html'" class="main-header" 
+      ng-controller="HeaderController as vm"></header>
+
+    <aside ng-include="'/modules/core/client/views/header_admin.client.view.html'" class="main-sidebar" 
+      ng-controller="HeaderController as vm"></aside>
+
+    <div class="content-wrapper" style="background:white">
+      <section class="content">
+        {{{block "content"}}}
+      </section>
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    var user = {{{ user }}};
+    var env = "{{ env }}";
+  </script>
+
+  <!--Load The Socket.io File-->
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+  <!--Application JavaScript Files-->
+  {{#each jsFiles}}
+  <script type="text/javascript" src="/{{this}}"></script>{{/each}}
+
+  <!--owasp config sync-->
+  <script type="text/javascript">
+    $.widget.bridge('uibutton', $.ui.button);
+    var sharedConfig = {{{ sharedConfig }}};
+    owaspPasswordStrengthTest.config(sharedConfig.owasp);
+  </script>
+
+  {{#if livereload}}
+  <!--Livereload script rendered -->
+  <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
+  {{/if}}
+
+</body>
+
+</html>
